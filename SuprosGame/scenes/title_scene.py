@@ -1,29 +1,22 @@
-import pygame
-from SuprosGame.scenes import Scene
-from SuprosGame.ui import Button
+from SuprosGame.scenes.scene import Scene
+from SuprosGame.ui.button import Button
+from SuprosGame.ui.label import Label
 
 class TitleScene(Scene):
-    def __init__(self, game):
-        super().__init__(game)
-        self.new_game_button = Button('New Game', (200, 200), self.game.change_scene, args=('new_game',))
-        self.load_game_button = Button('Load Game', (200, 250), self.game.change_scene, args=('load_game',))
-        self.options_button = Button('Options', (200, 300), self.game.change_scene, args=('options',))
-        self.quit_button = Button('Quit', (200, 350), sys.exit)
+    def __init__(self):
+        super().__init__()
 
-    def handle_event(self, event):
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            sys.exit()
-        self.new_game_button.handle_event(event)
-        self.load_game_button.handle_event(event)
-        self.options_button.handle_event(event)
-        self.quit_button.handle_event(event)
+        self.title_label = Label("Welcome to Supros", 64, (255, 255, 255), self.window_width // 2, self.window_height // 3)
 
-    def update(self):
+        self.start_button = Button("Start", (self.window_width // 2, self.window_height // 2), self.on_start_clicked)
+        self.quit_button = Button("Quit", (self.window_width // 2, self.window_height * 2 // 3), self.on_quit_clicked)
+
+        self.add_ui_element(self.title_label)
+        self.add_ui_element(self.start_button)
+        self.add_ui_element(self.quit_button)
+
+    def on_start_clicked(self):
         pass
 
-    def draw(self, surface):
-        surface.fill((0, 0, 0))
-        self.new_game_button.draw(surface)
-        self.load_game_button.draw(surface)
-        self.options_button.draw(surface)
-        self.quit_button.draw(surface)
+    def on_quit_clicked(self):
+        self.quit_game()
