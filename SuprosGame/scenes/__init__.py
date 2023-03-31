@@ -1,6 +1,7 @@
-from SuprosGame.scenes.title_scene import TitleScene
-from SuprosGame.scenes.new_game_scene import NewGameScene
-from SuprosGame.scenes.load_game_scene import LoadGameScene
-from SuprosGame.scenes.options_scene import OptionsScene
+from .scenes import Scene
+from .title_scene import TitleScene
+from .new_game_scene import NewGameScene
+from .load_game_scene import LoadGameScene
+from .options_scene import OptionsScene
 
-__all__ = ['TitleScene', 'NewGameScene', 'LoadGameScene', 'OptionsScene']
+__all__ = ['Scene', 'TitleScene', 'NewGameScene', 'LoadGameScene', 'OptionsScene']

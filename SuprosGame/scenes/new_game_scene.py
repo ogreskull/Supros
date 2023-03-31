@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
-from scene import Scene
-from button import Button
+from .scenes import Scene
+from SuprosGame.ui import Button
 
 class NewGameScene(Scene):
     def __init__(self, game):

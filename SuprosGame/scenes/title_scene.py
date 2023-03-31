@@ -1,23 +1,30 @@
-from typing import List, Tuple
-import pygame
-
-from scenes import Scene
+from .scenes import Scene
+from SuprosGame.ui import Button, Label
 
 class TitleScene(Scene):
-    def __init__(self, screen: pygame.Surface):
-        super().__init__(screen)
+    def __init__(self):
+        super().__init__()
 
-    def process_input(self, events: List[pygame.event.Event]):
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                self.switch_to_scene("gameplay")
+        title_label = Label("Welcome to SuprosGame!", 48)
+        title_label.center()
+        self.add_ui_element(title_label)
 
-    def update(self, dt: float):
-        pass
+        new_game_button = Button("New Game", 24)
+        new_game_button.center()
+        new_game_button.y += 80
+        self.add_ui_element(new_game_button)
 
-    def render(self):
-        self.screen.fill((255, 255, 255))
-        font = pygame.font.SysFont(None, 48)
-        text = font.render("Title Scene", True, (0, 0, 0))
-        rect = text.get_rect(center=self.screen.get_rect().center)
-        self.screen.blit(text, rect)
+        load_game_button = Button("Load Game", 24)
+        load_game_button.center()
+        load_game_button.y += 160
+        self.add_ui_element(load_game_button)
+
+        options_button = Button("Options", 24)
+        options_button.center()
+        options_button.y += 240
+        self.add_ui_element(options_button)
+
+        quit_button = Button("Quit", 24)
+        quit_button.center()
+        quit_button.y += 320
+        self.add_ui_element(quit_button)
