@@ -1,5 +1,5 @@
 import pygame
-from .scenes.title_scene import TitleScene
+from scenes.title_scene import TitleScene
 
 
 class Game:

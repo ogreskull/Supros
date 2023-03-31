@@ -1,25 +1,19 @@
-from .scenes import Scene
-from SuprosGame.ui import Button, Label
+import pygame
+
+from SuprosGame.scenes import Scene
+from SuprosGame.scenes.menu_scene import MenuScene
+from SuprosGame.ui import Label
+
 
 class TitleScene(Scene):
-    def __init__(self, screen):
-        super().__init__(screen)
+    def __init__(self):
+        super().__init__()
 
-        title_label = Label("Supros", 72)
-        title_label.center()
-        title_label.y = 100
-        self.add_ui_element(title_label)
+        self.title_label = Label("Press any key to start", 48)
+        self.title_label.center()
+        self.add_ui_element(self.title_label)
 
-        play_button = Button("Play", 36)
-        play_button.center()
-        play_button.y = 300
-        play_button.on_click = self.play_game
-        self.add_ui_element(play_button)
-
-    def play_game(self):
-        self.switch_to_scene(GameScene())
-
-        quit_button = Button("Quit", 24)
-        quit_button.center()
-        quit_button.y += 320
-        self.add_ui_element(quit_button)
+    def handle_input(self, events):
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                self.switch_to_scene(MenuScene())
