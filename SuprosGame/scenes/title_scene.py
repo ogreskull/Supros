@@ -1,22 +1,23 @@
-from SuprosGame.scenes import Scene
-from SuprosGame.ui import Button
-from SuprosGame.ui import Label
+from typing import List, Tuple
+import pygame
+
+from scenes import Scene
 
 class TitleScene(Scene):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, screen: pygame.Surface):
+        super().__init__(screen)
 
-        self.title_label = Label("Welcome to Supros", 64, (255, 255, 255), self.window_width // 2, self.window_height // 3)
+    def process_input(self, events: List[pygame.event.Event]):
+        for event in events:
+            if event.type == pygame.KEYDOWN:
+                self.switch_to_scene("gameplay")
 
-        self.start_button = Button("Start", (self.window_width // 2, self.window_height // 2), self.on_start_clicked)
-        self.quit_button = Button("Quit", (self.window_width // 2, self.window_height * 2 // 3), self.on_quit_clicked)
-
-        self.add_ui_element(self.title_label)
-        self.add_ui_element(self.start_button)
-        self.add_ui_element(self.quit_button)
-
-    def on_start_clicked(self):
+    def update(self, dt: float):
         pass
 
-    def on_quit_clicked(self):
-        self.quit_game()
+    def render(self):
+        self.screen.fill((255, 255, 255))
+        font = pygame.font.SysFont(None, 48)
+        text = font.render("Title Scene", True, (0, 0, 0))
+        rect = text.get_rect(center=self.screen.get_rect().center)
+        self.screen.blit(text, rect)
