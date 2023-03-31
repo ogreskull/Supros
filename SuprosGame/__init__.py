@@ -28,3 +28,4 @@ class SuprosGame:
             self.current_scene.render(self.screen)
 
             pygame.display.flip()
+            pygame.display.flip()
