@@ -16,3 +16,6 @@ class TitleScene(Scene):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 self.switch_to_scene("menu")
+
+    def add_ui_element(self, element):
+        self.ui_elements.append(element)
