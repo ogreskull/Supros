@@ -1,6 +1,6 @@
-from SuprosGame.scenes.scene import Scene
-from SuprosGame.ui.button import Button
-from SuprosGame.ui.label import Label
+from SuprosGame.scenes import Scene
+from SuprosGame.ui import Button
+from SuprosGame.ui import Label
 
 class TitleScene(Scene):
     def __init__(self):
