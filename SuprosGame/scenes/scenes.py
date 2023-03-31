@@ -1,6 +1,7 @@
 from typing import List, Tuple, Optional
 import pygame
 
+
 class Scene:
     def __init__(self, screen: pygame.Surface):
         self.screen = screen

@@ -13,10 +13,13 @@ class TitleScene(Scene):
         press_start_label.y = self.screen.get_rect().centery
         self.add_ui_element(press_start_label)
 
-    def handle_events(self, events):
-        for event in events:
-            if event.type == pygame.KEYDOWN:
-                self.next_scene = "menu"
+    def handle_events(self, event):
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                self.game.change_scene(Scene(self.game))
 
     def update(self):
         pass
