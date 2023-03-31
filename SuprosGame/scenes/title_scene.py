@@ -18,7 +18,6 @@ class TitleScene(Scene):
             if event.type == pygame.KEYDOWN:
                 self.next_scene = "menu"
 
-
     def update(self):
         pass
 

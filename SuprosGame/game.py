@@ -12,6 +12,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.scene = TitleScene(self.screen)
         self.running = True
+        self.fps = 60
 
     def game_loop(self):
         while self.running:
@@ -37,7 +38,7 @@ class Game:
 
     def run(self):
         clock = pygame.time.Clock()
-        while not self.quit:
+        while self.running:
             dt = clock.tick(self.fps) / 1000.0
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
