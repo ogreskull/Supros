@@ -1,19 +1,18 @@
 import pygame
-
-from SuprosGame.scenes import Scene
-from SuprosGame.scenes.menu_scene import MenuScene
+from scenes import Scene
 from SuprosGame.ui import Label
 
 
 class TitleScene(Scene):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, screen):
+        super().__init__(screen)
+        self.background = pygame.image.load('..\\SuprosAssets\\images\\backgrounds\\title_screen.png')
+        press_start_label = Label(100, 100, "Press any key to start", 24)
+        press_start_label.center()
+        press_start_label.y = self.screen.get_rect().centery
+        self.add_ui_element(press_start_label)
 
-        self.title_label = Label("Press any key to start", 48)
-        self.title_label.center()
-        self.add_ui_element(self.title_label)
-
-    def handle_input(self, events):
+    def handle_events(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                self.switch_to_scene(MenuScene())
+                self.switch_to_scene("menu")

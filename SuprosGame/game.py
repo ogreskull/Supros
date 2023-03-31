@@ -1,27 +1,35 @@
 import pygame
-from scenes.title_scene import TitleScene
+from SuprosGame.scenes.title_scene import TitleScene
+from SuprosGame.scenes.menu_scene import MenuScene
 
 
 class Game:
     def __init__(self):
         pygame.init()
-        pygame.display.set_caption("Supros Game")
 
         self.screen = pygame.display.set_mode((800, 600))
+        pygame.display.set_caption("Supros")
+
         self.clock = pygame.time.Clock()
 
         self.scene = TitleScene(self.screen)
+        self.scene.add_scene("menu", MenuScene(self.screen))
 
     def run(self):
-        while True:
-            dt = self.clock.tick(60) / 1000
+        running = True
 
-            for event in pygame.event.get():
+        while running:
+            events = pygame.event.get()
+
+            for event in events:
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    quit()
+                    running = False
 
-            self.screen.fill((255, 255, 255))
-            self.scene.update(dt)
-            self.scene.draw(self.screen)
+            self.scene.handle_events(events)
+            self.scene.update()
+            self.scene.render(self.screen)
+
             pygame.display.update()
+            self.clock.tick(60)
+
+        pygame.quit()
