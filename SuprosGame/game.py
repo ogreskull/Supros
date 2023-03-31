@@ -44,5 +44,6 @@ class Game:
                     self.quit = True
             self.scene.handle_events(event)
             self.scene.update(dt)
-            self.scene.render()
+            self.scene.render(self.screen)
             pygame.display.update()
+
