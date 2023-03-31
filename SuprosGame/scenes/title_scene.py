@@ -2,27 +2,22 @@ from .scenes import Scene
 from SuprosGame.ui import Button, Label
 
 class TitleScene(Scene):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, screen):
+        super().__init__(screen)
 
-        title_label = Label("Welcome to SuprosGame!", 48)
+        title_label = Label("Supros", 72)
         title_label.center()
+        title_label.y = 100
         self.add_ui_element(title_label)
 
-        new_game_button = Button("New Game", 24)
-        new_game_button.center()
-        new_game_button.y += 80
-        self.add_ui_element(new_game_button)
+        play_button = Button("Play", 36)
+        play_button.center()
+        play_button.y = 300
+        play_button.on_click = self.play_game
+        self.add_ui_element(play_button)
 
-        load_game_button = Button("Load Game", 24)
-        load_game_button.center()
-        load_game_button.y += 160
-        self.add_ui_element(load_game_button)
-
-        options_button = Button("Options", 24)
-        options_button.center()
-        options_button.y += 240
-        self.add_ui_element(options_button)
+    def play_game(self):
+        self.switch_to_scene(GameScene())
 
         quit_button = Button("Quit", 24)
         quit_button.center()
